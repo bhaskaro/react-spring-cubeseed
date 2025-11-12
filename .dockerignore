@@ -1,0 +1,21 @@
+# Frontend
+frontend/node_modules
+frontend/dist
+frontend/.vite
+frontend/.parcel-cache
+frontend/npm-debug.log*
+frontend/package-lock.json
+
+# Backend
+backend/target
+backend/.idea
+backend/.mvn
+backend/.classpath
+backend/.project
+backend/.settings
+
+# Misc
+.git
+.vscode
+.idea
+*.log
