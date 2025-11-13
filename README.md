@@ -1,5 +1,3 @@
-# `README.md`
-
 # React + Spring Boot + Postgres + Nginx (JWT) — Monorepo
 
 A full-stack template with:
