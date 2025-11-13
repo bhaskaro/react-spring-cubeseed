@@ -77,6 +77,97 @@ To generate a strong Base64 secret:
 openssl rand -base64 48
 ```
 
+
+---
+
+````markdown
+## Database Persistence (Local Volume Mapping)
+
+The PostgreSQL container uses a **bind mount** to persist data on the host.  
+This ensures your database state is preserved even if you rebuild or restart containers.
+
+### Compose snippet
+
+```yaml
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: app-db
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: applongpass
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data   # local persistence
+
+  api:
+    build: ./backend
+    container_name: app-api
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/appdb
+      DB_USER: appuser
+      DB_PASSWORD: applongpass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXP_MIN: 60
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+
+  web:
+    build: ./frontend
+    container_name: app-web
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+````
+
+### Data Directory
+
+Docker will automatically create `dbdata/` at the project root on first startup:
+
+```
+react-springboot-app/
+└── dbdata/               ← created automatically, holds Postgres data files
+```
+
+To verify it’s working:
+
+```bash
+ls -l dbdata/
+```
+
+If it doesn’t exist (e.g., you removed it manually), recreate it before bringing up the containers:
+
+```bash
+mkdir -p dbdata
+docker compose up -d db
+```
+
+To reset the database completely:
+
+```bash
+docker compose down -v
+rm -rf dbdata/
+```
+
+> ✅ The `.gitignore` already excludes `dbdata/` — so it will never be committed.
+
+```
+
+---
+
+
 ## Build & Run (Docker, recommended)
 
 From repo root:
