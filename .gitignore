@@ -1,0 +1,67 @@
+# ---- Global / OS / IDE ----
+.DS_Store
+Thumbs.db
+*.iml
+.idea/
+.vscode/
+*.log
+logs/
+*.swp
+*.swo
+
+# ---- Docker / Env ----
+# Commit example.env; DO NOT commit real secrets
+.env
+.env.*.local
+docker-data/
+**/tmp/
+**/.env.local
+# Compose & image leftovers
+**/*.pid
+
+# ---- Backend (Spring Boot / Maven) ----
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/.mvn/wrapper/maven-wrapper.properties
+backend/.mvn/wrapper/MavenWrapperDownloader.java
+backend/.flattened-pom.xml
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/*.log
+backend/.idea/
+backend/*.iml
+
+# If you ever use Gradle in this project:
+backend/.gradle/
+backend/build/
+backend/gradle-app.setting
+backend/gradlew
+backend/gradlew.bat
+backend/gradle/
+
+# ---- Frontend (Node / Vite) ----
+frontend/node_modules/
+frontend/dist/
+frontend/.eslintcache
+frontend/.tsbuildinfo
+frontend/npm-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/.vite/
+frontend/.parcel-cache/
+
+# ---- Nginx content baked at build ----
+web/nginx/.cache/
+web/nginx/access.log
+web/nginx/error.log
+
+# ---- Test / Coverage ----
+**/coverage/
+**/.nyc_output/
+**/jest-html-reporters-*.html
+
+# ---- Misc local tooling ----
+scripts/*.local.sh
+*.secret
+
