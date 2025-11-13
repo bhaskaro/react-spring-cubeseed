@@ -10,27 +10,37 @@ A full-stack template with:
 - **Reverse Proxy**: Nginx → forwards `/api/*` to Spring
 - **Orchestration**: Docker Compose
 
+Here’s a properly formatted and readable version of the **Repo Structure** section for your README:
+
 ## Repo Structure
 
+```
 
 react-springboot-app/
-├─ backend/                 # Spring Boot API
-│  ├─ src/main/java/…      	# code (JwtAuthFilter/JwtService/SecurityConfig/etc.)
-│  ├─ src/main/resources/  	# application.properties (uses envs)
-│  └─ pom.xml
-├─ frontend/                # React app (Vite)
-│  ├─ src/…
-│  ├─ index.html
-│  └─ package.json
-├─ web/                     # Nginx config (if separate)
-│  └─ default.conf
-├─ docker-compose.yml
-├─ Dockerfile.api
-├─ Dockerfile.web
-├─ example.env              # sample env file (copy to .env)
-├─ deploy.sh                # convenience script: build & up
-├─ README.md
-└─ .gitignore
+├── backend/                    # Spring Boot API
+│   ├── src/main/java/...       # Source code (JwtAuthFilter, JwtService, SecurityConfig, etc.)
+│   ├── src/main/resources/     # application.properties (uses environment variables)
+│   └── pom.xml                 # Maven build configuration
+│
+├── frontend/                   # React app (Vite)
+│   ├── src/...                 # React components, hooks, etc.
+│   ├── index.html              # Vite entry point
+│   └── package.json            # Node dependencies and scripts
+│
+├── web/                        # Nginx reverse proxy (optional)
+│   └── default.conf            # Nginx site configuration
+│
+├── docker-compose.yml           # Multi-service orchestration
+├── Dockerfile.api               # Spring Boot API Dockerfile
+├── Dockerfile.web               # Frontend/Nginx Dockerfile
+├── example.env                  # Sample environment file (copy to .env)
+├── deploy.sh                    # Script to build and deploy containers
+├── README.md                    # Project documentation
+└── .gitignore                   # Git ignore patterns
+
+```
+
+
 
 ````
 
